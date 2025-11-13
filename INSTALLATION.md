@@ -100,6 +100,35 @@ VITE v7.2.2  ready in XXX ms
 
 Open the frontend in your browser: `http://localhost:5173`
 
+### Optional: Run everything using Docker Compose (recommended for evaluators)
+
+If you don't want to install PostgreSQL locally, use Docker Compose to bring up a Postgres instance and run migrations automatically.
+
+From the project root:
+
+```powershell
+# Start Postgres container
+docker-compose up -d
+
+# Run the helper script which runs migrations and seed
+.\scripts\start-local.ps1
+```
+
+Notes:
+- `docker-compose.yml` is provided at the project root and starts a Postgres 15 container with DB `fueleu_maritime` and password `postgres`.
+- After running the helper script, start the backend and frontend in two separate terminals:
+
+```powershell
+# Terminal 1 - backend
+cd backend
+npm run dev
+
+# Terminal 2 - frontend
+cd frontend
+npm run dev
+```
+
+
 ## Verification Checklist
 
 - [ ] Backend database migrations completed without errors
